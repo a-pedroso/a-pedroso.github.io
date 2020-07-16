@@ -188,4 +188,10 @@
     items: 1
   });
 
+    // current age
+    var birthDate = new Date(1985, 3, 20);
+    var currentDate = new Date();
+    var age = currentDate.getUTCFullYear() - birthDate.getUTCFullYear();
+    $("#current-age").html(age);
+
 })(jQuery);
