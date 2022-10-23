@@ -88,17 +88,6 @@
     });
   }
 
-
-  // current age
-  var birthDate = new Date(1985, 3, 20);
-  var currentDate = new Date();
-  var diff_ms = currentDate - birthDate; // miliseconds
-  var age_dt = new Date(diff_ms); 
-  var age = Math.abs(age_dt.getUTCFullYear() - 1970);
-
-  $("#current-age").html(age);
-
-
   //xp-years
   var startDate = new Date(2009, 1, 1);
   var currentDate = new Date();
