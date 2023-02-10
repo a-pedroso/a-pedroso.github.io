@@ -4,7 +4,7 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
-(function() {
+(async function() {
   "use strict";
 
   /**
@@ -56,27 +56,24 @@
     onscroll(document, toggleBacktotop)
   }
 
-    /**
-   * Skills animation
-   */
-     let skilsContent = select('.skills-content');
-     if (skilsContent) {
-       new Waypoint({
-         element: skilsContent,
-         offset: '80%',
-         handler: function(direction) {
-           let progress = select('.progress .progress-bar', true);
-           progress.forEach((el) => {
-             el.style.width = el.getAttribute('aria-valuenow') + '%'
-           });
-         }
-       })
-     }
-
-  new PureCounter();
+  /**
+  * Skills animation
+  */
+  let skilsContent = select('.skills-content');
+  if (skilsContent) {
+    new Waypoint({
+      element: skilsContent,
+      offset: '80%',
+      handler: function(direction) {
+        let progress = select('.progress .progress-bar', true);
+        progress.forEach((el) => {
+          el.style.width = el.getAttribute('aria-valuenow') + '%'
+        });
+      }
+    })
+  }
 
   if ($('.typed').length) {
-    
     var typed_strings = $(".typed").data('typed-items');
     typed_strings = typed_strings.split(',')
     new Typed('.typed', {
@@ -96,5 +93,17 @@
   var xp = Math.abs(xp_dt.getUTCFullYear() - 1970);
 
   $("#xp-years").attr('data-purecounter-end', xp);
+
+  //pub-repos
+  await fetch("https://api.github.com/users/a-pedroso/repos")
+  .then(response => response.json())
+  .then(data => {
+    $("#pub-repos").attr('data-purecounter-end', data.length);
+  });
+
+  // start counters
+  setTimeout(function() {
+    new PureCounter();
+  }, 500);
 
 })()
